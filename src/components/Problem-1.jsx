@@ -3,41 +3,10 @@ import React, {useState} from 'react';
 const Problem1 = () => {
 
     const [show, setShow] = useState('all');
-    const [data,setData]=useState([]);
-    const [isToggle,setIsToggle]=useState("");
-    const [isCompleted,setIsCompleted]=useState(false);
-   const [user,setUser]=useState({ name:"",status:""});
 
-   const handleOnChange=(e)=>{
-       setUser({...user,
-       [e.target.name]:e.target.value
-    })
-   }
-   let newData=data.filter(dt=>dt.status===isToggle);
     const handleClick = (val) =>{
-       if(val==="active"){
-        setIsToggle("active");
-     
-       }
-       if(val==="all"){
-        setIsToggle("")
-        
-       }
-       if(val==="completed"){
-       setIsToggle("completed");
-       }
-
+        setShow(val);
     }
-
-  let {name,status}=user;
-const handleSubmit=(e)=>{
-    e.preventDefault()
-     setData([...data,{name,status}])
-    //  console.log(user);
-    setUser({name:"",status:""});
-    
-    // console.log(user);
-}
 
     return (
 
@@ -45,15 +14,15 @@ const handleSubmit=(e)=>{
             <div className="row justify-content-center mt-5">
                 <h4 className='text-center text-uppercase mb-5'>Problem-1</h4>
                 <div className="col-6 ">
-                    <form  className="row gy-2 gx-3 align-items-center mb-4">
+                    <form className="row gy-2 gx-3 align-items-center mb-4">
                         <div className="col-auto">
-                            <input autoComplete='off' name="name" value={user.name} onChange={handleOnChange} type="text" className="form-control" placeholder="Name"/>
+                            <input type="text" className="form-control" placeholder="Name"/>
                         </div>
                         <div className="col-auto">
-                            <input autoComplete='off' name='status' value={user.status} onChange={handleOnChange}  type="text" className="form-control" placeholder="Status"/>
+                            <input type="text" className="form-control" placeholder="Status"/>
                         </div>
                         <div className="col-auto">
-                            <button onClick={handleSubmit}  type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -73,31 +42,13 @@ const handleSubmit=(e)=>{
                     <table className="table table-striped ">
                         <thead>
                         <tr>
-                        <td></td>
-                        <td></td>
+                            <th scope="col">Name</th>
+                            <th scope="col">Status</th>
                         </tr>
                         </thead>
                         <tbody>
-                        { isToggle==="active" ||isToggle==="completed" ?
-                         newData?.map(dt=>(
-                                <tr>
-                                <td>{dt.name}</td>
-                                <td>{dt.status}</td>
-                                </tr>
-                         ))
-                         :
-                         data?.map(dt=>(
-                             <tr>
-                                <td>{dt.name}</td>
-                                <td>{dt.status}</td>
-                            </tr>
-                         ))
-                         
-                         
-                        }
-                      
-                        </tbody>
                         
+                        </tbody>
                     </table>
                 </div>
             </div>
